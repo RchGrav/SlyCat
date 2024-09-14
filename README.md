@@ -56,6 +56,11 @@ This will generate a file called `myproject_output.md` that contains all the fil
 
 ### Slice LLM Responses Back Into Files
 
+Add the following line to your coding prompt...
+```text
+Tag all code fences with relative filepaths in the format ### **`filepath`** on the line above each code fence.
+```
+
 After receiving the response from an LLM (such as code suggestions or documentation updates), you can slice the Markdown file back into individual files and directories:
 
 ```bash

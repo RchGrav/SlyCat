@@ -65,12 +65,17 @@ def write_file_to_output(file_path, base_folder, output_file):
 
 def traverse_and_concatenate(base_folder, output_file):
     for root, dirs, files in os.walk(base_folder):
-        dirs.sort()
-        files.sort(key=lambda x: (x != "README.md", not x.endswith(".md"), x.lower()))
+        dirs[:] = sorted(dirs)  # Sort directories in-place
+        files.sort(key=lambda x: (
+            x.lower() != "readme.md",  # README.md first
+            not x.lower().endswith(".md"),  # Other .md files next
+            x.lower()  # Then sort alphabetically
+        ))
         for file in files:
             file_path = os.path.join(root, file)
             if os.path.isfile(file_path) and is_text_file(file_path):
-                print(f"  Adding file: {file_path}")
+                rel_path = os.path.relpath(file_path, base_folder)
+                print(f"  Adding file: {rel_path}")
                 write_file_to_output(file_path, base_folder, output_file)
 
 def concatenate_files_and_folders(output_name, paths, force=False):

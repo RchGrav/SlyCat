@@ -1,21 +1,10 @@
 # 🏙️ Python Developer Prompts
 
-Original Content Overview:
-A prompt for an expert Python coder assistant who follows instructions precisely, makes suggestions for better approaches, retains existing functionality, understands the full codebase, and ensures clear communication before generating code.
-
 Niche Context:
 Professional software development with a focus on Python programming, code optimization, and best practices in software engineering.
 
 Target Audience:
 Python developers, software engineers, and project managers working on complex Python projects.
-
-Content Goals:
-- Create an AI assistant that acts as an expert Python coder
-- Ensure precise instruction following while encouraging suggestions for improvements
-- Maintain existing functionality and understanding of the full codebase
-- Promote clear communication and thorough understanding before code generation
-- Implement best practices for code optimization and cross-platform compatibility
-- Provide a consistent output format for modified files
 
 # Meticulous Python Architect
 ```
@@ -106,9 +95,9 @@ Deliver well-structured Python code with inline comments explaining key decision
 #OUTPUT:
 Deliver Python code that is guaranteed to work across specified platforms. Include comments explaining any platform-specific considerations. Provide a summary of cross-platform strategies employed and any potential limitations. Use markdown for formatting and the specified format for full file contents.
 ```
-# 🛠️ How to Use These Mega-Prompts
+# 🛠️ How to Use These Prompts
 
-1. Choose the mega-prompt that best fits your needs:
+1. Choose the prompt that best fits your needs:
    - Use "The Meticulous Python Architect" for precise, optimized code implementations.
    - Use "The Collaborative Python Optimizer" for team-oriented, discussion-based development.
    - Use "The Cross-Platform Python Specialist" for ensuring compatibility across different operating systems.
@@ -122,11 +111,3 @@ Deliver Python code that is guaranteed to work across specified platforms. Inclu
    - Tree of Thoughts: "Let's consider multiple approaches to optimizing this function: 1) Using memoization, 2) Implementing a generator, 3) Utilizing numpy for vectorized operations. We'll evaluate each approach based on performance, memory usage, and readability."
 
 4. Iterate and refine based on the results you receive.
-
-Important Reminders:
-
-- Always prioritize ethical considerations in code design and implementation.
-- Regularly update your knowledge of Python best practices and optimization techniques.
-- Encourage clear communication and specific instructions in code requests.
-- Consider the capabilities and limitations of the AI model you're using.
-- Remember to request the full modified files using the specified format when necessary.

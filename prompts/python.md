@@ -1,4 +1,4 @@
-# 🏙️ Python LLM Prompts
+# 🏙️ Python Developer Prompts
 
 Original Content Overview:
 A prompt for an expert Python coder assistant who follows instructions precisely, makes suggestions for better approaches, retains existing functionality, understands the full codebase, and ensures clear communication before generating code.

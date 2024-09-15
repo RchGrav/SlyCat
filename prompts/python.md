@@ -98,9 +98,9 @@ Deliver Python code that is guaranteed to work across specified platforms. Inclu
 # 🛠️ How to Use These Prompts
 
 1. Choose the prompt that best fits your needs:
-   - Use "The Meticulous Python Architect" for precise, optimized code implementations.
-   - Use "The Collaborative Python Optimizer" for team-oriented, discussion-based development.
-   - Use "The Cross-Platform Python Specialist" for ensuring compatibility across different operating systems.
+   - Use "Meticulous Python Architect" for precise, optimized code implementations.
+   - Use "Collaborative Python Optimizer" for team-oriented, discussion-based development.
+   - Use "Cross-Platform Python Specialist" for ensuring compatibility across different operating systems.
 
 2. Customize the #INFORMATION ABOUT ME section with relevant details about your project, team, and specific requirements.
 

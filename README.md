@@ -58,9 +58,7 @@ This will generate a file called `myproject_output.md` that contains all the fil
 
 Add the following line to your coding prompt...
 ```text
-Provide the full contents of each modified file in a code fence. Use the format: ### **`relative/filepath`**
-Include all code from each modified original file (functions, classes, etc.), not just the modified sections.
-If a file is long, split it into logical sections and append `.1`, `.2`, etc., to the filename, ensuring no content is omitted.
+Provide the full contents of every modified file in a code fence, with the relative filepath in the format ### **`filepath`** above each fence, ensuring all original code (including unchanged sections) is included, and for long files, break them into logical sections with `.1`, `.2`, etc., without omitting any content.
 ```
 
 After receiving the response from an LLM (such as code suggestions or documentation updates), you can slice the Markdown file back into individual files and directories:

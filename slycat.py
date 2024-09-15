@@ -73,11 +73,7 @@ def write_file_to_output(file_path, base_folder, output_file):
         print(f"Error: Unable to read {file_path} with any of the attempted encodings. Skipping this file.")
         return
 
-    output_file.write(f"\n### **`{rel_path}`**\n\n")
-    if language == "md":
-        output_file.write(f"{content}\n\n")
-    else:
-        output_file.write(f"```{language}\n{content}\n```\n")
+    output_file.write(f"\n### **`{rel_path}`**\n\n```{language}\n{content}\n```\n")
 
 def traverse_and_concatenate(base_folder, output_file):
     """Recursively traverse folders and concatenate text files."""

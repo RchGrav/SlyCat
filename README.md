@@ -135,9 +135,3 @@ We welcome contributions to Slycat! If you'd like to contribute, please follow t
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Future Features
-
-- Support for compressed file formats (e.g., `.zip`, `.tar.gz`)
-- Custom configuration files for flexible project structures
-- Additional file type support and code fence detection

@@ -61,7 +61,7 @@ def write_file_to_output(file_path, base_folder, output_file):
     if content is None:
         print(f"Error: Unable to read {file_path} with any of the attempted encodings. Skipping this file.")
         return
-    output_file.write(f"\n### ***`{rel_path}`***\n\n```{language}\n{content}\n```\n")
+    output_file.write(f"\n### **`{rel_path}`**\n\n```{language}\n{content}\n```\n")
 
 def traverse_and_concatenate(base_folder, output_file):
     for root, dirs, files in os.walk(base_folder):
@@ -101,7 +101,7 @@ def slice_file(input_file, output_folder):
         print(f"Created output folder: {output_folder}")
     with open(input_file, 'r', encoding='utf-8') as f:
         content = f.read()
-    pattern = r'^\s*###\s*\*\*\*`([^`]+)`\*\*\*\s*$\n\n```(\w*)\n([\s\S]*?)```'
+    pattern = r'^\s*###\s*\*\*`([^`]+)`\*\*\s*$\n\n```(\w*)\n([\s\S]*?)```'
     matches = re.finditer(pattern, content, re.MULTILINE)
     file_contents = {}
     for match in matches:

@@ -118,7 +118,7 @@ Slycat supports the following file types and applies appropriate code fences bas
 - **JSON (.json)**: `json`
 - **YAML (.yml/.yaml)**: `yaml`
 - **XML (.xml)**: `xml`
-- **Markdown (.md)**: Markdown files are not enclosed in code fences, but simply added as-is.
+- **Markdown (.md)**: `md`
 
 Files without a supported extension will be added without code fences, preserving their plain text content.
 

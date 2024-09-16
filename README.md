@@ -1,6 +1,6 @@
 # SlyCat (Slice & Concatenate)
 
-[![Slycat Logo](https://github.com/RchGrav/SlyCat/blob/main/assets/slycat-logo.png)](https://github.com/RchGrav/SlyCat)
+[![Slycat Logo](https://github.com/RchGrav/SlyCat/blob/main/assets/slycatlogo.png)](https://github.com/RchGrav/SlyCat)
 
 Slycat is a powerful Python utility designed to simplify working with large language models (LLMs) on complex, multi-file projects. It seamlessly merges entire projects into a single Markdown-friendly document for easy submission to LLMs, and then intelligently slices LLM responses back into their original file structure.
 

@@ -56,7 +56,7 @@ This example excludes the `sensitive_data.txt` file from being included in the c
 1. **Include this prompt instruction when interacting with the LLM:**
 
    ```
-   Provide the full contents of every modified file in a code fence, with the relative filepath in the format ### **`filepath`** above each fence, ensuring all original code (including unchanged sections) is included. If a file is too long, break it into logical sections with `.1`, `.2`, etc. at the end of the filepath, without omitting any content.
+   For each modified file, provide its full contents in a code fence.  Precede each fence with the relative filepath in the format: `### **`filepath`**`. If a file is truncated, append `.1`, `.2`, etc. to the filepath for each part, ensuring no content is omitted. Include all original code, even if unchanged. 
    ```
 
 2. **Slice the Response:**

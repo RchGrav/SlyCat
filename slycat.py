@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import os
 import re
 import chardet
@@ -65,11 +66,11 @@ def write_file_to_output(file_path, base_folder, output_file):
 
 def traverse_and_concatenate(base_folder, output_file):
     for root, dirs, files in os.walk(base_folder):
-        dirs[:] = sorted(dirs)  # Sort directories in-place
+        dirs[:] = sorted(dirs)
         files.sort(key=lambda x: (
-            x.lower() != "readme.md",  # README.md first
-            not x.lower().endswith(".md"),  # Other .md files next
-            x.lower()  # Then sort alphabetically
+            x.lower() != "readme.md",
+            not x.lower().endswith(".md"),
+            x.lower()
         ))
         for file in files:
             file_path = os.path.join(root, file)
@@ -98,21 +99,64 @@ def concatenate_files_and_folders(output_name, paths, force=False):
                 print(f"Warning: '{path}' is neither a file nor a folder, skipping.")
     print("Concatenation complete.")
 
-def slice_file(input_file, output_folder):
-    print(f"Slicing file: {input_file}")
+def find_overlap(s1, s2):
+    for i in range(min(len(s1), len(s2)), 0, -1):
+        if s1.endswith(s2[:i]):
+            return i
+    return 0
+
+def slice_files(input_files, output_folder):
+    print(f"Slicing files: {', '.join(input_files)}")
     print(f"Output folder: {output_folder}")
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
         print(f"Created output folder: {output_folder}")
-    with open(input_file, 'r', encoding='utf-8') as f:
-        content = f.read()
-    pattern = r'^\s*###\s*\*\*`([^`]+)`\*\*\s*$\n\n```(\w*)\n([\s\S]*?)```'
-    matches = re.finditer(pattern, content, re.MULTILINE)
+    
+    matches = []
+    pattern = r'^\s*###\s*\*\*`([^`]+)`\*\*\s*$\n\n```(\w*)\n([\s\S]*?)(?:```|\Z)'
+    
+    for input_file in input_files:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        match_list = list(re.finditer(pattern, content, re.MULTILINE))
+        matches.extend(match_list)
+    
+    dot_one_files = {}
+    base_files = {}
+    for match in matches:
+        file_path = match.group(1).strip()
+        if file_path.endswith('.1'):
+            base_path = file_path[:-2]
+            dot_one_files[base_path] = match
+        else:
+            base_files[file_path] = match
+    
+    updated_contents = {}
+    matches_to_remove = []
+    for base_path, dot_one_match in dot_one_files.items():
+        if base_path in base_files:
+            base_match = base_files[base_path]
+            base_content = base_match.group(3)
+            dot_one_content = dot_one_match.group(3)
+            
+            overlap = find_overlap(base_content, dot_one_content)
+            if overlap > 0:
+                missing_part = base_content[:-overlap]
+            else:
+                missing_part = base_content
+            
+            full_content = missing_part + dot_one_content
+            updated_contents[dot_one_match.group(1).strip()] = full_content
+            
+            matches_to_remove.append(base_match)
+    
+    for match in matches_to_remove:
+        matches.remove(match)
+    
     file_contents = {}
     for match in matches:
         file_path = match.group(1).strip()
-        code_fence_language = match.group(2)
-        file_content = match.group(3)
+        file_content = updated_contents.get(file_path, match.group(3))
         parts = file_path.split('.')
         if parts[-1].isdigit():
             part_number = int(parts.pop())
@@ -122,6 +166,7 @@ def slice_file(input_file, output_folder):
             file_contents[base_path].append((part_number, file_content.strip()))
         else:
             file_contents[file_path] = [(1, file_content.strip())]
+    
     for file_path, contents in file_contents.items():
         full_output_path = os.path.join(output_folder, file_path)
         os.makedirs(os.path.dirname(full_output_path), exist_ok=True)
@@ -140,10 +185,10 @@ def main():
     parser.add_argument("-f", "--force", action="store_true", help="Overwrite the output file if it exists.")
     parser.add_argument("-s", "--slice", action="store_true", help="Slice the concatenated file back into individual files and folders.")
     args = parser.parse_args()
+    
     if args.slice:
         print("Running in slice mode...")
-        for path in args.paths:
-            slice_file(path, args.output)
+        slice_files(args.paths, args.output)
     else:
         print("Running in concatenate mode...")
         concatenate_files_and_folders(args.output, args.paths, force=args.force)

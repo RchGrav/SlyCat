@@ -1,4 +1,4 @@
-# print("SlyCat (Slice & Concatenate)")
+# SlyCat (Slice & Concatenate)
 
 [![Slycat Logo](https://github.com/RchGrav/SlyCat/blob/main/assets/slycat-logo.png)](https://github.com/RchGrav/SlyCat)
 
